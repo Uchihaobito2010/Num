@@ -1,27 +1,42 @@
 {
-  "functions": {
-    "api/*.php": {
-      "runtime": "vercel-php@0.6.0"
-    }
-  },
-  "routes": [
+  "rewrites": [
     {
-      "src": "/",
-      "dest": "/public/index.html"
+      "source": "/api/(.*)",
+      "destination": "/api/index.php"
     },
     {
-      "src": "/api/(.*)",
-      "dest": "/api/index.php"
+      "source": "/",
+      "destination": "/public/index.html"
     },
     {
-      "src": "/(.*)",
-      "dest": "/api/index.php"
+      "source": "/status",
+      "destination": "/api/index.php"
+    },
+    {
+      "source": "/info",
+      "destination": "/api/index.php"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/api/index.php"
     }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type, Authorization"
+        },
         {
           "key": "X-API-Owner",
           "value": "Tobi"
@@ -32,5 +47,7 @@
         }
       ]
     }
-  ]
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
 }
