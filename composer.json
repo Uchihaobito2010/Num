@@ -1,8 +1,5 @@
 {
   "require": {
     "php": "^8.0"
-  },
-  "scripts": {
-    "start": "php -S localhost:8000 api/index.php"
   }
 }
